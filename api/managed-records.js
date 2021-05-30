@@ -22,7 +22,7 @@ const retrieve = (options = {}) => {
   };
 
   return new Promise((resolve, _) => {
-    let colorsToRequest = ["blue", "brown", "green", "red", "yellow"];
+    let colorsToRequest = supportedColors;
 
     if (userSpecifiedColors) {
       // Ignore unsupported colors when building the request URL
@@ -93,11 +93,7 @@ const getRecordsJSON = async url => {
 };
 
 const userSpecified = (needle, haystack) => {
-  if (typeof haystack !== 'undefined') {
-    return Object.keys(haystack).includes(needle);
-  }
-
-  return false;
+  return Object.keys(haystack).includes(needle);
 };
 
 const buildURL = (page, colors, defaultPageSize) => {
