@@ -22,7 +22,7 @@ const retrieve = (options = {}) => {
   };
 
   return new Promise((resolve, _) => {
-    let colorsToRequest = supportedColors;
+    let colorsToRequest = null;
 
     if (userSpecifiedColors) {
       // Ignore unsupported colors when building the request URL
@@ -98,10 +98,15 @@ const userSpecified = (needle, haystack) => {
 
 const buildURL = (page, colors, defaultPageSize) => {
   const pageBasedOffset = (page - 1) * defaultPageSize;
-  return URI(window.path)
+  let requestURI = URI(window.path)
     .addQuery('limit', nextPageExistsSize)
-    .addQuery('offset', pageBasedOffset)
-    .addQuery('color[]', colors);
+    .addQuery('offset', pageBasedOffset);
+
+  if (colors != null) {
+    requestURI.addQuery('color[]', colors);
+  }
+
+  return requestURI;
 };
 
 export default retrieve;
