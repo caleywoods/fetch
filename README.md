@@ -1,3 +1,9 @@
+# Running
+
+`yarn install && yarn test`
+
+To make the records endpoint accessible for testing with Postman/Insomnia `node records/index.js`
+
 # Fetch
 
 At Ad Hoc, our front-end applications often exchange JSON data with various RESTful APIs. We use modern JavaScript
